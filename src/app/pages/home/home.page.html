@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>DGG Store</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="load()">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="loading">
+    <ion-spinner></ion-spinner>
+    <p>Carregando...</p>
+  </div>
+
+  <div *ngIf="error">
+    <ion-card>
+      <ion-card-content>{{ error }}</ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-grid *ngIf="!loading && !error">
+    <ion-row>
+      <!-- *ngFor -> diretiva estrutural -->
+      <ion-col size="12" size-md="6" *ngFor="let p of products">
+        <ion-card (click)="openDetail(p.id)" [appHighlight]="'rgba(34,150,243,0.12)'">
+          <img [src]="p.image" alt="{{p.title}}" style="height:160px; object-fit:contain; width:100%;">
+          <ion-card-header>
+            <ion-card-title>{{ p.title | shortTitle:40 }}</ion-card-title>
+            <ion-card-subtitle>{{ p.price | currency:'BRL' }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            {{ p.description | shortTitle:100 }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
