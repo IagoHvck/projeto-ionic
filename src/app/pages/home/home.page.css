@@ -1,187 +1,148 @@
-/* home.page.scss / home.page.css
-   Tema escuro (preto/cinza) com acento dourado.
-   Centraliza o título DGG Store, mantém botão voltar funcional.
-*/
-
-/* cores base */
-:root{
-  --bg-dark: #0f1113;
-  --panel: #16171a;
-  --card-bg: rgba(255,255,255,0.02);
-  --muted: #9aa4b2;
-  --gold: #ffd166;
-  --gold-dark: #f4b040;
-  --accent-blue: #90e0ef;
+:root {
+  --bg-dark: #121212;
+  --bg-panel: #1a1a1a;
+  --text-light: #ffffff;
+  --text-muted: #b3b3b3;
+  --gold: #ffca56;
+  --gold-dark: #f5b638;
   --radius: 12px;
-  --max-width: 1100px;
+  --btn-height: 44px; 
 }
 
-/* fundo da app */
-ion-app, ion-content {
-  --background: linear-gradient(180deg, var(--bg-dark) 0%, #0b0c0e 100%);
-  color: #fff;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+
+ion-content {
+  --background: var(--bg-dark);
+  color: var(--text-light);
+  font-family: 'Inter', 'Poppins', sans-serif;
 }
 
-/* toolbar com título centralizado
-   estratégia: toolbar usa flex; left slot absolutizado para não deslocar o title
-*/
+
 ion-toolbar {
-  --background: linear-gradient(90deg,#0c0d10,#16171a);
-  height: 64px;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-/* se houver botões à esquerda, mantê-los à esquerda sem empurrar o título */
-ion-buttons[slot="start"] {
-  position: absolute;
-  left: 12px;
-  z-index: 2;
-}
-
-/* título central, visual marcante */
-ion-title {
-  margin: 0 auto;
-  font-size: 1.15rem;
+  --background: #111;
+  --color: var(--text-light);
   font-weight: 700;
-  letter-spacing: -0.2px;
-  color: #fff;
+  text-align: center;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* conteúdo: centralizar grid e limitar largura */
-.ionic-page-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 18px 16px 48px;
+
+.loading, .error-card {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 40px 0;
 }
 
-.page-inner {
-  width: 100%;
-  max-width: var(--max-width);
-}
 
-/* loading / spinner */
-.loading {
+ion-card {
+  background: var(--bg-panel);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,202,86,0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+
+  
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3.5rem 0;
-  color: var(--muted);
-}
-ion-spinner {
-  --width: 64px;
-  --height: 64px;
-  --color: var(--gold);
-  margin-bottom: 12px;
-}
+  justify-content: flex-start;
 
-/* error card */
-.error-card {
-  background: linear-gradient(180deg, rgba(255,20,20,0.02), rgba(255,20,20,0.01));
-  border: 1px solid rgba(255,80,80,0.06);
-  color: #ffdede;
-  margin: 12px 0;
-  border-radius: 10px;
-}
-
-/* grid / cards */
-ion-card {
-  background: var(--card-bg);
-  border-radius: calc(var(--radius) + 4px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.6);
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.03);
-  transition: transform 220ms ease, box-shadow 220ms ease;
-  cursor: pointer;
+ 
+  padding-bottom: calc(var(--btn-height) + 28px);
 }
 
 ion-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.75);
+  transform: translateY(-4px);
+  border-color: rgba(255,202,86,0.35);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.55), 0 0 20px rgba(255,202,86,0.12);
 }
 
-/* imagem do produto */
+
 ion-card > img {
   width: 100%;
-  height: 160px;
+  height: 200px;
   object-fit: contain;
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.02));
-  transition: transform 300ms ease, filter 300ms ease;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
-ion-card > img:hover { transform: scale(1.03); filter: saturate(1.05); }
 
-/* header dentro do card: título + preço */
+
 ion-card-header {
-  padding: 12px 14px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  align-items: center;
+  padding: 14px 16px;
 }
 
-/* título do produto */
+
 ion-card-title {
   font-size: 1rem;
   font-weight: 700;
-  color: #fff;
-  margin: 0;
-  line-height: 1.15;
+  color: var(--text-light);
+  flex: 1;
+  margin-right: 12px;
 }
 
-/* preço como badge dourada */
+
 ion-card-subtitle {
-  font-weight: 800;
-  font-size: 0.9rem;
-  color: #07110a;
   background: linear-gradient(180deg, var(--gold), var(--gold-dark));
-  padding: 6px 10px;
-  border-radius: 10px;
-  box-shadow: 0 8px 18px rgba(255,200,80,0.12);
+  color: #fff;            /* texto branco conforme pedido */
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(255,202,86,0.18);
+  border: 1px solid rgba(255,202,86,0.5);
+  white-space: nowrap;
 }
 
-/* descrição curta */
+
 ion-card-content {
-  color: var(--muted);
-  font-size: 0.93rem;
+  color: var(--text-muted);
+  font-size: 0.92rem;
   line-height: 1.45;
-  padding: 10px 14px 18px;
-  min-height: 68px;
+  padding: 0 16px 12px;
+  flex: 1; 
 }
 
-/* destaque visual da listagem */
-ion-card[appHighlight] {
-  position: relative;
-  overflow: visible;
+
+
+ion-card:hover::after {
+  transform: translateX(-50%) scale(1.03);
+  box-shadow: 0 12px 36px rgba(255,202,86,0.28), 0 0 30px rgba(255,202,86,0.22);
 }
 
-/* small tweaks for spacing inside grid columns */
-.product-col {
-  padding: 8px;
+
+ion-card:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255,202,86,0.08);
 }
 
-/* empty state */
-.empty {
-  padding: 28px;
-  text-align: center;
-  color: var(--muted);
-  font-style: italic;
-}
 
-/* responsive adjustments */
-@media (max-width: 920px) {
-  ion-card > img { height: 180px; }
-  ion-card-header { flex-direction: column; align-items: flex-start; gap: 8px; }
-  ion-card-subtitle { align-self: flex-start; }
-}
+@media (max-width: 768px) {
 
-@media (max-width: 600px) {
-  ion-card > img { height: 140px; }
-  ion-card-title { font-size: 0.98rem; }
-  ion-card-subtitle { font-size: 0.85rem; padding: 6px 8px; }
-  .page-inner { padding: 0 6px; }
+  ion-card > img {
+    height: 160px;
+  }
+
+  ion-card {
+    padding-bottom: calc(var(--btn-height) + 18px);
+  }
+
+  ion-card::after {
+    bottom: 10px;
+    padding: 0 14px;
+    font-size: 0.88rem;
+  }
+
+  ion-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  ion-card-subtitle {
+    align-self: flex-start;
+  }
 }
