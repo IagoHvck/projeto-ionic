@@ -8,7 +8,10 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div *ngIf="loading"><ion-spinner></ion-spinner></div>
+  <div *ngIf="loading" class="loading-wrap">
+    <ion-spinner></ion-spinner>
+    <p>Carregando...</p>
+  </div>
 
   <div *ngIf="!loading && product">
     <ion-card>
@@ -17,20 +20,31 @@
         <ion-card-title>{{ product.title }}</ion-card-title>
         <ion-card-subtitle>{{ product.price | currency:'BRL' }}</ion-card-subtitle>
       </ion-card-header>
+
       <div class="detail-actions">
         <div class="actions-left">
-          <button class="btn-fav">♡ Favoritar</button>
+         
+          <button class="btn-fav" (click)="toggleFavorite(product)">
+            <span *ngIf="isFavorite(product.id); else notFav">♥ Favoritado</span>
+            <ng-template #notFav>♡ Favoritar</ng-template>
+          </button>
+
           <div class="product-meta">Disponível • SKU: 12345</div>
         </div>
-      
+
         <div class="actions-right">
           <button class="btn-buy">Comprar agora</button>
         </div>
       </div>
+
       <ion-card-content>
         <p>{{ product.description }}</p>
         <p><strong>Categoria:</strong> {{ product.category }}</p>
       </ion-card-content>
     </ion-card>
+  </div>
+
+  <div *ngIf="!loading && !product" class="empty">
+    Produto não encontrado.
   </div>
 </ion-content>
