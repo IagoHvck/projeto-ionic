@@ -1,4 +1,3 @@
-/* home.page.ts - alterado para suporte a favoritos e uso da directive */
 import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { IonicModule } from '@ionic/angular';

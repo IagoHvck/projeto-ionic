@@ -8,43 +8,48 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div *ngIf="loading" class="loading-wrap">
-    <ion-spinner></ion-spinner>
-    <p>Carregando...</p>
-  </div>
+  @if (loading) {
+    <div class="loading-wrap">
+      <ion-spinner></ion-spinner>
+      <p>Carregando...</p>
+    </div>
+  } @else {
+    
+    @if (product) {
+      <ion-card>
+        <img [src]="product.image" alt="{{product.title}}" style="height:300px; object-fit:contain; width:100%;">
+        <ion-card-header>
+          <ion-card-title>{{ product.title }}</ion-card-title>
+          <ion-card-subtitle>{{ product.price | currency:'BRL' }}</ion-card-subtitle>
+        </ion-card-header>
 
-  <div *ngIf="!loading && product">
-    <ion-card>
-      <img [src]="product.image" alt="{{product.title}}" style="height:300px; object-fit:contain; width:100%;">
-      <ion-card-header>
-        <ion-card-title>{{ product.title }}</ion-card-title>
-        <ion-card-subtitle>{{ product.price | currency:'BRL' }}</ion-card-subtitle>
-      </ion-card-header>
+        <div class="detail-actions">
+          <div class="actions-left">
+            <button class="btn-fav" (click)="toggleFavorite(product)">
+              @if (isFavorite(product.id)) {
+                <span>♥ Favoritado</span>
+              } @else {
+                <span>♡ Favoritar</span>
+              }
+            </button>
 
-      <div class="detail-actions">
-        <div class="actions-left">
-         
-          <button class="btn-fav" (click)="toggleFavorite(product)">
-            <span *ngIf="isFavorite(product.id); else notFav">♥ Favoritado</span>
-            <ng-template #notFav>♡ Favoritar</ng-template>
-          </button>
+            <div class="product-meta">Disponível • SKU: 12345</div>
+          </div>
 
-          <div class="product-meta">Disponível • SKU: 12345</div>
+          <div class="actions-right">
+            <button class="btn-buy">Comprar agora</button>
+          </div>
         </div>
 
-        <div class="actions-right">
-          <button class="btn-buy">Comprar agora</button>
-        </div>
+        <ion-card-content>
+          <p>{{ product.description }}</p>
+          <p><strong>Categoria:</strong> {{ product.category }}</p>
+        </ion-card-content>
+      </ion-card>
+    } @else {
+      <div class="empty">
+        Produto não encontrado.
       </div>
-
-      <ion-card-content>
-        <p>{{ product.description }}</p>
-        <p><strong>Categoria:</strong> {{ product.category }}</p>
-      </ion-card-content>
-    </ion-card>
-  </div>
-
-  <div *ngIf="!loading && !product" class="empty">
-    Produto não encontrado.
-  </div>
+    }
+  }
 </ion-content>
