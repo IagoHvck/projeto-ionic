@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>DGG Store</ion-title>
+    <ion-title>{{'DGG Store'|uppercase}}</ion-title>
 
     <ion-buttons slot="end">
       <ion-button fill="clear" (click)="openFavorites()" title="Favoritos">
@@ -50,7 +50,6 @@
                 <div style="display:flex; align-items:center; gap:8px;">
                   <ion-card-subtitle>{{ p.price | currency:'BRL' }}</ion-card-subtitle>
 
-                  <!-- evita que o clique do botão acione o click do card -->
                   <button
                     (click)="$event.stopPropagation(); toggleFavorite(p)"
                     style="background:transparent; border:0; color:var(--gold); font-weight:700; cursor:pointer"
