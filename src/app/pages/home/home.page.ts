@@ -43,13 +43,12 @@ export class HomePage {
     this.router.navigate(['/favorites']);
   }
 
-  // getter pra quantidade de favoritos
+
   get favoritesCount(): number {
     return this.favoritesService.getFavorites().length;
   }
 
 
-  //check de evento
   toggleFavorite(product: any, ev?: Event) {
     if (ev) ev.stopPropagation();
     this.favoritesService.toggleFavorite(product);

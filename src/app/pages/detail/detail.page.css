@@ -1,29 +1,27 @@
-/* DETAIL PAGE STYLES
-   Tema escuro, moderno, responsive.
-   Colocar em detail.page.scss / detail.page.css
-*/
+
+
 
 :root {
   --bg-dark: #121217;
   --panel: #1e1f23;
   --card: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   --muted: #9aa4b2;
-  --accent: #ffd166;     /* ouro/amazon-like */
-  --accent-2: #90e0ef;   /* azul claro */
+  --accent: #ffd166;     
+  --accent-2: #90e0ef;   
   --glass: rgba(255,255,255,0.03);
   --radius: 16px;
   --max-width: 980px;
   --brand-font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
-/* Fundo geral */
+
 ion-app, ion-content {
   --background: var(--bg-dark);
   color: #ffffff;
   font-family: var(--brand-font);
 }
 
-/* Toolbar fixo com marca */
+
 ion-toolbar {
   --background: linear-gradient(90deg, rgba(18,18,23,1), rgba(30,31,36,1));
   height: 64px;
@@ -33,7 +31,7 @@ ion-toolbar {
   align-items: center;
 }
 
-/* Título da marca - grande e elegante */
+
 ion-title.brand-title {
   font-weight: 700;
   letter-spacing: -0.5px;
@@ -41,21 +39,21 @@ ion-title.brand-title {
   font-size: 1.15rem;
 }
 
-/* centralizar o card e limitar largura */
+
 .page-content {
   display: flex;
   justify-content: center;
   padding: 20px 16px 48px;
 }
 
-/* container do card central */
+
 .detail-wrap {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
 }
 
-/* Card principal com efeito glass + bordas suaves */
+
 ion-card {
   background: var(--card);
   border-radius: calc(var(--radius) + 4px);
@@ -65,13 +63,12 @@ ion-card {
   transition: transform 240ms cubic-bezier(.2,.9,.2,1), box-shadow 240ms;
 }
 
-/* hover/press subtle */
+
 ion-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 18px 60px rgba(0,0,0,0.75);
 }
 
-/* area da imagem com fundo gradiente suave */
 ion-card > img {
   display: block;
   width: 100%;
@@ -81,13 +78,13 @@ ion-card > img {
   transition: transform 420ms ease, filter 420ms ease;
 }
 
-/* leve zoom ao passar */
+
 ion-card > img:hover {
   transform: scale(1.03);
   filter: saturate(1.06);
 }
 
-/* header do card (título + preço) */
+
 ion-card-header {
   padding: 18px 20px 12px;
   display: flex;
@@ -96,7 +93,7 @@ ion-card-header {
   gap: 12px;
 }
 
-/* título do produto */
+
 ion-card-title {
   font-size: 1.35rem;
   font-weight: 700;
@@ -105,7 +102,7 @@ ion-card-title {
   line-height: 1.1;
 }
 
-/* subtítulo: preço estilizado como badge */
+
 ion-card-subtitle {
   font-size: 1rem;
   font-weight: 700;
@@ -117,7 +114,7 @@ ion-card-subtitle {
   align-self: flex-start;
 }
 
-/* conteúdo do card: descrição + categoria */
+
 ion-card-content {
   padding: 12px 20px 24px;
   color: var(--muted);
@@ -125,12 +122,11 @@ ion-card-content {
   line-height: 1.6;
 }
 
-/* categoria em destaque */
+
 ion-card-content p strong {
   color: var(--accent);
 }
 
-/* barra de ações fixas (comprar / favoritar) */
 .detail-actions {
   display: flex;
   gap: 12px;
@@ -138,7 +134,7 @@ ion-card-content p strong {
   align-items: center;
 }
 
-/* botão primário comprar */
+
 .btn-buy {
   background: linear-gradient(180deg,#ffd166,#f4b040);
   color: #06110a;
@@ -151,11 +147,11 @@ ion-card-content p strong {
   transition: transform 150ms ease, box-shadow 150ms ease;
 }
 
-/* hover / active */
+
 .btn-buy:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(220,160,20,0.18); }
 .btn-buy:active { transform: translateY(0); }
 
-/* botão secundário (favoritar) */
+
 .btn-fav {
   background: transparent;
   color: var(--accent-2);
@@ -165,7 +161,7 @@ ion-card-content p strong {
   cursor: pointer;
 }
 
-/* nota visual: pequeno card de infos (stock, sku) */
+
 .product-meta {
   display: flex;
   gap: 10px;
@@ -175,7 +171,7 @@ ion-card-content p strong {
   font-size: 0.92rem;
 }
 
-/* spinner central grande elegante */
+
 .loading-wrap {
   display: flex;
   align-items: center;
@@ -188,7 +184,7 @@ ion-spinner {
   --color: var(--accent);
 }
 
-/* Empty states / fallback */
+
 .empty-state {
   padding: 48px 20px;
   color: var(--muted);
@@ -196,7 +192,7 @@ ion-spinner {
   font-style: italic;
 }
 
-/* responsividade */
+
 @media (max-width: 800px) {
   ion-card > img { height: 260px; }
   ion-card-header { flex-direction: column; align-items: flex-start; gap: 8px; }
@@ -205,7 +201,7 @@ ion-spinner {
   .btn-buy { width: 100%; justify-content: center; }
 }
 
-/* pequena animação de entrada do card */
+
 ion-card { animation: cardIn 550ms cubic-bezier(.2,.9,.2,1) both; }
 @keyframes cardIn {
   from { opacity: 0; transform: translateY(14px) scale(.995); }
@@ -220,21 +216,21 @@ ion-card { animation: cardIn 550ms cubic-bezier(.2,.9,.2,1) both; }
   width: 100%;
 }
 
-/* bloco esquerdo (favoritar + meta) */
+
 .actions-left {
   display: flex;
   gap: 12px;
   align-items: center;
 }
 
-/* bloco direito (botão comprar) fica alinhado à direita */
+
 .actions-right {
-  margin-left: auto;      /* empurra para a direita */
+  margin-left: auto;      
   display: flex;
   align-items: center;
 }
 
-/* força largura mínima no botão pra ficar consistente */
+
 .btn-buy {
   min-width: 160px;
   padding: 12px 20px;
@@ -248,7 +244,7 @@ ion-card { animation: cardIn 550ms cubic-bezier(.2,.9,.2,1) both; }
   transition: transform 150ms ease, box-shadow 150ms ease;
 }
 
-/* versão menor do botão (quando houver pouco espaço) */
+
 .btn-fav {
   background: transparent;
   color: var(--accent-2);
@@ -258,7 +254,7 @@ ion-card { animation: cardIn 550ms cubic-bezier(.2,.9,.2,1) both; }
   cursor: pointer;
 }
 
-/* ajustes para dispositivos pequenos: empilhar ações e botões */
+
 @media (max-width: 800px) {
   .detail-actions {
     flex-direction: column;
@@ -278,7 +274,7 @@ ion-card { animation: cardIn 550ms cubic-bezier(.2,.9,.2,1) both; }
     justify-content: flex-end;
   }
 
-  /* no mobile o botão ocupa toda a largura para ficar tocável */
+ 
   .btn-buy {
     width: 100%;
     min-width: 0;

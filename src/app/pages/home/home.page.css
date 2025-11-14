@@ -88,7 +88,7 @@ ion-card-title {
 
 ion-card-subtitle {
   background: linear-gradient(180deg, var(--gold), var(--gold-dark));
-  color: #fff;            /* texto branco conforme pedido */
+  color: #fff;            
   font-weight: 700;
   padding: 8px 14px;
   border-radius: 12px;
